@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15
+    container_name: nestjs_backend_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      nestjs_backend_db: nestjs_backend
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: nestjs_prisma_api
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://postgres:root@database:5432/nestjs_backend?schema=public
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: ['sh', '-c', 'npx prisma generate && npm run start']

@@ -8,6 +8,7 @@ import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
+import { LoginBiometricsDto } from './dto/login.biometrics.dto';
 
 @Injectable()
 export class AuthService {
@@ -61,6 +62,23 @@ export class AuthService {
     const token = this.jwtService.sign({ userId: user.id });
 
     const { password: _, ...result } = user;
+
+    return { ...result, token };
+  }
+
+  async loginWithBiometrics(loginBiometricsDto: LoginBiometricsDto) {
+    const { biometricKey } = loginBiometricsDto;
+    //check if the user is exists
+    const user = await this.prisma.user.findFirst({
+      where: { biometricKey },
+    });
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials! Please try again');
+    }
+
+    const token = this.jwtService.sign({ userId: user.id });
+
+    const { biometricKey: _, ...result } = user;
 
     return { ...result, token };
   }
