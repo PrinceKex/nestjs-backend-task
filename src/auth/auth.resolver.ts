@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { User } from './models/user';
 import { Body, UseGuards, UseInterceptors } from '@nestjs/common';
@@ -14,6 +14,11 @@ export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
   @UseGuards(JwtAuthGuard)
+  @Query((returns) => User)
+  async show() {
+    return 'This will be updated to return all users';
+  }
+
   @Mutation((returns) => User)
   async register(@Body() registerDto: RegisterDto) {
     return this.authService.register(registerDto);
