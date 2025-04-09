@@ -9,30 +9,28 @@ import { DataInterceptor } from 'src/common/interceptors/data.interceptors';
 import { JwtAuthGuard } from './jwt-auth.guard';
 
 @UseInterceptors(DataInterceptor)
-@Resolver((of) => User)
+@Resolver(() => User)
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Query((returns) => User)
+  @Query(() => User)
   async show() {
     return 'This will be updated to return all users';
   }
 
-  @Mutation((returns) => User)
-  async register(@Body() registerDto: RegisterDto) {
-    return this.authService.register(registerDto);
+  @Mutation(() => User)
+  async register(@Args('input') input: RegisterDto): Promise<User> {
+    return this.authService.register(input);
   }
 
-  @Mutation((returns) => Boolean)
-  async login(@Body() loginDto: LoginDto) {
-    return this.authService.register(loginDto);
+  @Mutation(() => Boolean)
+  async login(@Args('input') input: LoginDto) {
+    return this.authService.register(input);
   }
 
-  @Mutation((returns) => Boolean)
-  async loginWithBiometrics(
-    @Args('biometricsInfo') biometricsInfo: LoginBiometricsDto,
-  ) {
-    return this.authService.loginWithBiometrics(biometricsInfo);
+  @Mutation(() => Boolean)
+  async loginWithBiometrics(@Args('input') input: LoginBiometricsDto) {
+    return this.authService.loginWithBiometrics(input);
   }
 }
