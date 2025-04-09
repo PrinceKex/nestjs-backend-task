@@ -3,10 +3,8 @@
 # ------------------------------------------------------
 
 type User {
-  id: ID!
+  id: Int!
   email: String!
-  password: String!
-  biometricKey: String
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -21,9 +19,20 @@ type Query {
 }
 
 type Mutation {
-  register: User!
-  login: Boolean!
-  loginWithBiometrics(biometricsInfo: LoginBiometricsDto!): Boolean!
+  register(input: RegisterDto!): User!
+  login(input: LoginDto!): User!
+  loginWithBiometrics(input: LoginBiometricsDto!): Boolean!
+}
+
+input RegisterDto {
+  email: String!
+  password: String!
+  biometricKey: String
+}
+
+input LoginDto {
+  email: String!
+  password: String!
 }
 
 input LoginBiometricsDto {

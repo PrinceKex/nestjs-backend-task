@@ -1,7 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { User } from './models/user';
-import { Body, UseGuards, UseInterceptors } from '@nestjs/common';
+import { UseGuards, UseInterceptors } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { LoginBiometricsDto } from './dto/login.biometrics.dto';
@@ -24,9 +24,9 @@ export class AuthResolver {
     return this.authService.register(input);
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => User)
   async login(@Args('input') input: LoginDto) {
-    return this.authService.register(input);
+    return this.authService.login(input);
   }
 
   @Mutation(() => Boolean)
