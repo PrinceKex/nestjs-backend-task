@@ -5,7 +5,7 @@ import { UseGuards, UseInterceptors } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { LoginBiometricsDto } from './dto/login.biometrics.dto';
-import { DataInterceptor } from 'src/common/interceptors/data.interceptors';
+import { DataInterceptor } from '../common/interceptors/data.interceptors';
 import { JwtAuthGuard } from './jwt-auth.guard';
 
 @UseInterceptors(DataInterceptor)
