@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "2cba03fe-e06d-4b78-8a9e-2eb91079b2c3",
+		"name": "Nestjs-Backend-Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24422495"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"email\": \"ehi.ukeke@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"createdAt\": \"2019-09-05\",\r\n    \"updatedAt\": \"2019-09-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://nestjs-backend-task:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"nestjs-backend-task"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ehi.ukeke@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "graphqlRegister",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Register($input: RegisterDto!) {\r\n  register(input: $input) {\r\n    \r\n    id email createdAt updatedAt  \r\n    \r\n  }\r\n}",
+						"variables": "{\r\n   \"input\" : {\r\n    \"email\": \"ehi.uke@gmail.com\",\r\n    \"password\": \"12345678\"   \r\n    \r\n   }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "graphqlRegister Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Register($input: RegisterDto!) {\r\n  register(input: $input) {\r\n    \r\n    email   \r\n    \r\n  }\r\n}",
+						"variables": "{\r\n   \"input\" : {\r\n    \"email\": \"ehi.ukek@gmail.com\",\r\n    \"password\": \"12345678\"   \r\n    \r\n   }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "graphqlLogin",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Login($input: LoginDto!) {\r\n  login(input: $input) {    \r\n    id email createdAt updatedAt token\r\n          \r\n  }\r\n}",
+						"variables": "{\r\n  \r\n    \"input\" : {\r\n    \"email\": \"ehi.ukek@gmail.com\",\r\n    \"password\": \"12345678\"   \r\n    \r\n   }\r\n   \r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3003/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
