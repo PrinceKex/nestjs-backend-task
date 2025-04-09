@@ -12,6 +12,6 @@ export class RegisterDto {
   @MinLength(6, { message: 'Password must be at least 6 characters long' })
   password: string;
 
-  @Field({ nullable: true })
-  biometricKey?: string;
+  // @Field({ nullable: true })
+  // biometricKey?: string;
 }

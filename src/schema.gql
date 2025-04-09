@@ -7,6 +7,7 @@ type User {
   email: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  token: String!
 }
 
 """
@@ -21,13 +22,12 @@ type Query {
 type Mutation {
   register(input: RegisterDto!): User!
   login(input: LoginDto!): User!
-  loginWithBiometrics(input: LoginBiometricsDto!): Boolean!
+  loginWithBiometrics(input: LoginBiometricsDto!): User!
 }
 
 input RegisterDto {
   email: String!
   password: String!
-  biometricKey: String
 }
 
 input LoginDto {

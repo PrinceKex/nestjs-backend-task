@@ -29,7 +29,7 @@ export class AuthResolver {
     return this.authService.login(input);
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => User)
   async loginWithBiometrics(@Args('input') input: LoginBiometricsDto) {
     return this.authService.loginWithBiometrics(input);
   }
